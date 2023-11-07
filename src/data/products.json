@@ -1,0 +1,22 @@
+[
+    {
+        "id": 0,
+        "productmas": "ไก่",
+        "productmass": "เป็ด"
+    },
+    {
+        "id": 1,
+        "productmas": "ไก่1",
+        "productmass": "เป็ด1"
+    },
+    {
+        "id": 2,
+        "productmas": "ไก่2",
+        "productmass": "เป็ด2"
+    },
+    {
+        "id": 3,
+        "productmas": "ไก่3",
+        "productmass": "เป็ด3"
+    }
+]

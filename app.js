@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 const { send } = require('process');
 const app = express();
-const productRouter = express.Router();
+const productsRouter = require('./src/router/productRouter');
 const PORT = process.env.PORT || 3000; // Provide a default port in case PORT is not defined
 
 app.use(morgan('combined'));
@@ -13,28 +13,26 @@ app.set("views", path.join(__dirname, "src/views")); // Use path.join to specify
 app.set("view engine", "ejs"); // Corrected property name
 
 app.get("/", (req, res) => {
-    res.render('index', { username: 'MasMAllow',cat:["kebub","bubke","bubbub"]});
+    res.render('index', { username: 'MasMAllow', cat: ["kebub", "bubke", "bubbub"] });
 });
 
-productRouter.route("/").get((req, res) => {
-    res.render("product",{
-        products:[
-            {productmas:'ไก่',productmass:'เป็ด'},
-            {productmas:'ไก่1',productmass:'เป็ด1'},
-            {productmas:'ไก่2',productmass:'เป็ด2'},
-            {productmas:'ไก่3',productmass:'เป็ด3'} 
-        ],
+productsRouter.route("/").get((req, res) => {
+    res.render("products", {
+        products
     });
 });
 
-productRouter.route("/1").get((req, res) =>{
-    res.send("Hello maslol");
+productsRouter.route("/:id").get((req, res) => {
+    const id = req.params.id;
+    res.render("product", {
+        product: products[id],
+    });
 });
 
-app.use("/product",productRouter);
+app.use("/products", productsRouter);
 
 app.listen(PORT, () => {
     const debugLog = debug('app');
-    
+
     debugLog("listening on port " + PORT);
 });
